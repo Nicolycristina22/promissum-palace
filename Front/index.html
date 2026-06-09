@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Promissum Palace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<nav>
+  <div class="logo" id="btn-topo">
+    <div class="logo-main">Promissum Palace</div>
+    <div class="logo-sub">Hotel &amp; Reservas</div>
+  </div>
+  <div class="nav-links">
+    <a id="nav-quartos">Quartos</a>
+    <a id="nav-reservas">Reservas</a>
+  </div>
+  <div class="nav-right">
+    <div id="nav-pill" style="display:none" class="user-pill">
+      <div class="u-av" id="nav-av"></div>
+      <div><div class="u-name" id="nav-nm"></div><div class="u-role" id="nav-rl"></div></div>
+    </div>
+    <div class="ham" id="btn-ham"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+
+<div class="drop" id="drop">
+  <div id="drop-guest">
+    <div class="drop-head">
+      <div style="font-size:13px;color:var(--cream-dim);font-weight:300">Bem-vindo ao Promissum Palace</div>
+    </div>
+    <button class="mi" id="btn-drop-login"><span class="mi-ic">🔑</span>Entrar na conta</button>
+    <button class="mi" id="btn-drop-cad"><span class="mi-ic">✦</span>Criar conta de hóspede</button>
+  </div>
+  <div id="drop-logged" style="display:none">
+    <div class="drop-head">
+      <div class="drop-av-row">
+        <div class="drop-av" id="drop-av"></div>
+        <div>
+          <div class="drop-name" id="drop-nm"></div>
+          <div class="drop-role" id="drop-rl"></div>
+          <div class="drop-email" id="drop-em"></div>
+        </div>
+      </div>
+    </div>
+    <button class="mi" id="btn-perfil"><span class="mi-ic">👤</span>Meu perfil</button>
+    <button class="mi" id="btn-minhas-res"><span class="mi-ic">📋</span>Minhas reservas</button>
+    <div class="drop-div"></div>
+    <button class="mi danger" id="btn-logout"><span class="mi-ic">↩</span>Sair</button>
+  </div>
+</div>
+
+
+<div class="overlay" id="ov-login">
+  <div class="modal">
+    <button class="mc" id="btn-fechar-login">✕</button>
+    <div class="m-tag">Acesso</div>
+    <div class="m-h">Bem-vindo de volta</div>
+    <div class="tabs">
+      <button class="tb active" id="tb-l">Entrar</button>
+      <button class="tb" id="tb-c">Criar conta</button>
+    </div>
+
+ 
+    <div id="tp-login">
+      <div id="al-login" class="alert"></div>
+      <div class="fg"><label>E-mail</label><input type="email" id="l-email" placeholder="seu@email.com"/></div>
+      <div class="fg"><label>Senha</label><input type="password" id="l-pw" placeholder="••••••••"/></div>
+      <button class="btn-p" id="btn-login">Entrar</button>
+      <div class="login-hint">Equipe: use o e-mail cadastrado pelo gerente.</div>
+    </div>
+
+    
+    <div id="tp-cad" style="display:none">
+      <div id="al-cad" class="alert"></div>
+      <div class="fg"><label>Nome completo</label><input type="text" id="c-nome" placeholder="Seu nome completo"/></div>
+      <div class="fr">
+        <div class="fg"><label>CPF / CNPJ</label><input type="text" id="c-doc" placeholder="000.000.000-00"/></div>
+        <div class="fg"><label>Data de nascimento</label><input type="text" id="c-nasc" placeholder="DD/MM/AAAA"/></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>E-mail</label><input type="email" id="c-email" placeholder="seu@email.com"/></div>
+        <div class="fg"><label>Telefone</label><input type="text" id="c-tel" placeholder="(11) 99999-9999"/></div>
+      </div>
+      <div class="fg"><label>Endereço (rua e número)</label><input type="text" id="c-end" placeholder="Rua Exemplo, 123"/></div>
+      <div class="fr">
+        <div class="fg"><label>Cidade</label><input type="text" id="c-cidade" placeholder="São Paulo"/></div>
+        <div class="fg"><label>Estado (UF)</label><input type="text" id="c-estado" placeholder="SP" maxlength="2"/></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>CEP</label><input type="text" id="c-cep" placeholder="00000-000"/></div>
+        <div class="fg"><label>Nacionalidade</label><input type="text" id="c-nac" placeholder="Brasileiro(a)"/></div>
+      </div>
+      <div class="fsep">Acesso</div>
+      <div class="fr">
+        <div class="fg"><label>Senha</label><input type="password" id="c-pw" placeholder="Mínimo 4 caracteres"/></div>
+        <div class="fg"><label>Confirmar senha</label><input type="password" id="c-pw2" placeholder="Repita"/></div>
+      </div>
+      <button class="btn-p" id="btn-cadastrar">Criar conta</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="overlay" id="ov-perfil">
+  <div class="modal">
+    <button class="mc" id="btn-fechar-perfil">✕</button>
+    <div class="m-tag">Conta</div>
+    <div class="m-h">Meu Perfil</div>
+    <div id="al-pf" class="alert"></div>
+    <div class="pf-grid">
+      <div class="pf-row"><span class="pf-l">Nome</span><span class="pf-v" id="pf-nome"></span></div>
+      <div class="pf-row"><span class="pf-l">Documento</span><span class="pf-v" id="pf-doc"></span></div>
+      <div class="pf-row"><span class="pf-l">Nascimento</span><span class="pf-v" id="pf-nasc"></span></div>
+      <div class="pf-row"><span class="pf-l">Nacionalidade</span><span class="pf-v" id="pf-nac"></span></div>
+      <div class="pf-row"><span class="pf-l">E-mail</span><span class="pf-v" id="pf-email"></span></div>
+      <div class="pf-row"><span class="pf-l">Telefone</span><span class="pf-v" id="pf-tel"></span></div>
+      <div class="pf-row"><span class="pf-l">Endereço</span><span class="pf-v" id="pf-end"></span></div>
+      <div class="pf-row"><span class="pf-l">Cidade / UF</span><span class="pf-v" id="pf-cidade"></span></div>
+      <div class="pf-row"><span class="pf-l">CEP</span><span class="pf-v" id="pf-cep"></span></div>
+    </div>
+    <div class="fsep">Atualizar dados</div>
+    <div class="fg"><label>Novo e-mail</label><input type="email" id="pf-edit-email" placeholder="Deixe em branco para não alterar"/></div>
+    <div class="fg"><label>Novo telefone</label><input type="text" id="pf-edit-tel" placeholder="Deixe em branco para não alterar"/></div>
+    <div class="fg"><label>Novo endereço</label><input type="text" id="pf-edit-end" placeholder="Deixe em branco para não alterar"/></div>
+    <button class="btn-p" id="btn-salvar-perfil">Salvar alterações</button>
+  </div>
+</div>
+
+
+<div class="overlay" id="ov-res">
+  <div class="modal xl">
+    <button class="mc" id="btn-fechar-res">✕</button>
+    <div class="m-tag">Reservar</div>
+    <div class="m-h" id="res-qnome">—</div>
+    <div class="res-qdet" id="res-qdet"></div>
+    <div id="al-res" class="alert"></div>
+
+    
+    <div id="bl-noauth" style="display:none;text-align:center;padding:24px 0 16px">
+      <div style="font-size:40px;margin-bottom:16px">🔑</div>
+      <div style="font-size:14px;color:var(--cream-dim);margin-bottom:24px;font-weight:300">Faça login para reservar este quarto</div>
+      <button class="btn-p" id="btn-noauth-login">Entrar na conta</button>
+      <button class="btn-o" id="btn-noauth-cad">Criar conta</button>
+    </div>
+
+    
+    <div id="bl-auth">
+      <div class="res-grid">
+        <div>
+
+          
+          <div id="bl-staff" style="display:none">
+            <div class="fsep" style="border-top:none;padding-top:0;margin-top:0">Reservar em nome de</div>
+            <div class="fg">
+              <label>Selecionar hóspede cadastrado</label>
+              <select id="r-hsel"><option value="">— Selecione —</option></select>
+            </div>
+            <div class="hint-ou">ou cadastrar novo hóspede:</div>
+            <div class="fr">
+              <div class="fg"><label>Nome</label><input type="text" id="r-nnome" placeholder="Nome completo"/></div>
+              <div class="fg"><label>Documento (CPF/CNPJ)</label><input type="text" id="r-ndoc" placeholder="000.000.000-00"/></div>
+            </div>
+            <div class="fr">
+              <div class="fg"><label>E-mail</label><input type="email" id="r-nemail" placeholder="email@hospede.com"/></div>
+              <div class="fg"><label>Telefone</label><input type="text" id="r-ntel" placeholder="(11) 99999-9999"/></div>
+            </div>
+            <div class="fg"><label>Endereço</label><input type="text" id="r-nend" placeholder="Rua e número"/></div>
+            <div class="fr">
+              <div class="fg"><label>Cidade</label><input type="text" id="r-ncidade" placeholder="São Paulo"/></div>
+              <div class="fg"><label>Estado</label><input type="text" id="r-nestado" placeholder="SP" maxlength="2"/></div>
+            </div>
+            <div class="fr">
+              <div class="fg"><label>CEP</label><input type="text" id="r-ncep" placeholder="00000-000"/></div>
+              <div class="fg"><label>Nacionalidade</label><input type="text" id="r-nnac" placeholder="Brasileiro(a)"/></div>
+            </div>
+            <div class="fg"><label>Data de nascimento</label><input type="text" id="r-nnasc" placeholder="DD/MM/AAAA"/></div>
+          </div>
+
+         
+          <div id="bl-hospinfo" style="display:none">
+            <div class="fsep" style="border-top:none;padding-top:0;margin-top:0">Dados do Hóspede</div>
+            <div class="fr">
+              <div class="fg"><label>Nome</label><input type="text" id="r-nome" readonly class="readonly-field"/></div>
+              <div class="fg"><label>Documento</label><input type="text" id="r-doc2" readonly class="readonly-field"/></div>
+            </div>
+            <div class="fr">
+              <div class="fg"><label>E-mail</label><input type="text" id="r-email2" readonly class="readonly-field"/></div>
+              <div class="fg"><label>Telefone</label><input type="text" id="r-tel2" readonly class="readonly-field"/></div>
+            </div>
+          </div>
+
+          <div class="fsep">Período</div>
+          <div class="fr">
+            <div class="fg"><label>Check-in</label><input type="date" id="r-ci"/></div>
+            <div class="fg"><label>Check-out</label><input type="date" id="r-co"/></div>
+          </div>
+          <div id="r-tot" class="r-tot-text"></div>
+          <div class="fsep">Serviços Extras</div>
+          <div class="servicos-lista" id="servicos-lista">
+            <label class="servico-item">
+              <input type="checkbox" class="svc-check" value="cafe_da_manha"/>
+              <span class="svc-nome">☕ Café da manhã</span>
+              <span class="svc-preco">+ R$ 50,00 / dia</span>
+            </label>
+            <label class="servico-item">
+              <input type="checkbox" class="svc-check" value="estacionamento"/>
+              <span class="svc-nome">🚗 Estacionamento</span>
+              <span class="svc-preco">+ R$ 30,00 / dia</span>
+            </label>
+            <label class="servico-item">
+              <input type="checkbox" class="svc-check" value="late_checkout"/>
+              <span class="svc-nome">🕐 Late check-out</span>
+              <span class="svc-preco">+ R$ 80,00</span>
+            </label>
+            <label class="servico-item">
+              <input type="checkbox" class="svc-check" value="transfer_aeroporto"/>
+              <span class="svc-nome">✈️ Transfer aeroporto</span>
+              <span class="svc-preco">+ R$ 120,00</span>
+            </label>
+          </div>
+          <div id="r-tot-servicos" class="r-tot-text" style="margin-top:8px"></div>
+
+          <div class="fg"><label>Observação (opcional)</label><input type="text" id="r-obs" placeholder="Ex: quarto silencioso, andar alto..."/></div>
+          <div class="fg">
+            <label>Forma de pagamento</label>
+            <select id="r-pgto">
+              <option value="PIX">PIX</option>
+              <option value="Cartão">Cartão</option>
+              <option value="Dinheiro">Dinheiro</option>
+            </select>
+          </div>
+          <button class="btn-p" id="btn-confirmar">Confirmar Reserva</button>
+        </div>
+
+        
+        <div>
+          <div class="cal-label">Disponibilidade</div>
+          <div class="mcal">
+            <div class="mcal-top">
+              <button class="mcal-nav" id="cal-prev">‹</button>
+              <div class="mcal-tit" id="cal-tit"></div>
+              <button class="mcal-nav" id="cal-next">›</button>
+            </div>
+            <div class="mcal-g" id="cal-g"></div>
+            <div class="cal-leg">
+              <div class="cl"><div class="cl-d fr"></div>Livre</div>
+              <div class="cl"><div class="cl-d oc"></div>Ocupado</div>
+              <div class="cl"><div class="cl-d td"></div>Hoje</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Bem-vindo ao</div>
+    <h1>Promissum <em>Palace</em></h1>
+    <div class="hero-line"></div>
+    <p>Três experiências únicas de hospedagem para quem exige o melhor em conforto e sofisticação.</p>
+    <div class="sbar">
+      <div class="sf"><label>Check-in</label><input type="date" id="s-ci"/></div>
+      <div class="sf"><label>Check-out</label><input type="date" id="s-co"/></div>
+      <div class="sf sf-last">
+        <label>Categoria</label>
+        <select id="s-tipo">
+          <option value="">Todos os tipos</option>
+          <option value="STANDARD">Standard</option>
+          <option value="LUXO">Luxo</option>
+          <option value="SUITE">Suíte</option>
+        </select>
+      </div>
+      <button class="sbtn" id="btn-filtrar">Buscar</button>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div id="sec-quartos">
+    <div class="sec-h"><h2>Nossos Quartos</h2><p>Três categorias exclusivas para a sua estadia</p></div>
+    <div class="qgrid" id="qgrid"></div>
+  </div>
+  <div id="sec-reservas" class="painel">
+    <div class="ph">
+      <div><h3 id="ptit">Reservas</h3><div class="ph-sub" id="psub"></div></div>
+      <div id="pfilt" style="display:none" class="frow">
+        <button class="fb active" id="fb-todos">Todas</button>
+        <button class="fb" id="fb-ativo">Ativas</button>
+        <button class="fb" id="fb-cancelado">Canceladas</button>
+      </div>
+    </div>
+    <div id="pstats" class="stats" style="display:none"></div>
+    <div id="plista"></div>
+  </div>
+</main>
+
+<footer>
+  <span class="logo-ft">Promissum Palace</span>
+  © 2025 Promissum Palace · Todos os direitos reservados
+</footer>
+
+
+<div class="overlay" id="ov-edit-res">
+  <div class="modal xl">
+    <button class="mc" id="btn-fechar-edit-res">✕</button>
+    <div class="m-tag">Reserva</div>
+    <div class="m-h">Editar Reserva</div>
+    <div id="al-edit-res" class="alert"></div>
+    <div class="res-grid">
+      <div>
+        <div class="fg">
+          <label>Quarto</label>
+          <select id="edit-quarto"></select>
+        </div>
+        <div class="fsep">Período</div>
+        <div class="fr">
+          <div class="fg"><label>Check-in</label><input type="date" id="edit-ci"/></div>
+          <div class="fg"><label>Check-out</label><input type="date" id="edit-co"/></div>
+        </div>
+        <div id="edit-tot" class="r-tot-text"></div>
+        <div class="fsep">Serviços Extras</div>
+        <div class="servicos-lista">
+          <label class="servico-item">
+            <input type="checkbox" class="edit-svc-check" value="cafe_da_manha"/>
+            <span class="svc-nome">☕ Café da manhã</span>
+            <span class="svc-preco">+ R$ 50,00 / dia</span>
+          </label>
+          <label class="servico-item">
+            <input type="checkbox" class="edit-svc-check" value="estacionamento"/>
+            <span class="svc-nome">🚗 Estacionamento</span>
+            <span class="svc-preco">+ R$ 30,00 / dia</span>
+          </label>
+          <label class="servico-item">
+            <input type="checkbox" class="edit-svc-check" value="late_checkout"/>
+            <span class="svc-nome">🕐 Late check-out</span>
+            <span class="svc-preco">+ R$ 80,00</span>
+          </label>
+          <label class="servico-item">
+            <input type="checkbox" class="edit-svc-check" value="transfer_aeroporto"/>
+            <span class="svc-nome">✈️ Transfer aeroporto</span>
+            <span class="svc-preco">+ R$ 120,00</span>
+          </label>
+        </div>
+        <div id="edit-tot-servicos" class="r-tot-text" style="margin-top:8px"></div>
+        <button id="btn-salvar-edit-res" class="btn-p" style="width:100%;margin-top:16px">Salvar Alterações</button>
+      </div>
+      <div>
+        <div class="cal-label">Disponibilidade</div>
+        <div class="mcal">
+          <div class="mcal-top">
+            <button class="mcal-nav" id="edit-cal-prev">‹</button>
+            <div class="mcal-tit" id="edit-cal-tit"></div>
+            <button class="mcal-nav" id="edit-cal-next">›</button>
+          </div>
+          <div class="mcal-g" id="edit-cal-g"></div>
+          <div class="cal-leg">
+            <div class="cl"><div class="cl-d fr"></div>Livre</div>
+            <div class="cl"><div class="cl-d oc"></div>Ocupado</div>
+            <div class="cl"><div class="cl-d td"></div>Hoje</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="overlay" id="ov-edit-cli">
+  <div class="modal">
+    <button class="mc" id="btn-fechar-edit-cli">✕</button>
+    <div class="m-tag">Cliente</div>
+    <div class="m-h">Editar Hóspede</div>
+    <div id="al-edit-cli" class="alert"></div>
+    <div class="fg"><label>Nome completo</label><input type="text" id="ec-nome" placeholder="Nome completo"/></div>
+    <div class="fr">
+      <div class="fg"><label>E-mail</label><input type="email" id="ec-email" placeholder="email@exemplo.com"/></div>
+      <div class="fg"><label>Telefone</label><input type="text" id="ec-tel" placeholder="(11) 99999-9999"/></div>
+    </div>
+    <div class="fg"><label>Endereço</label><input type="text" id="ec-end" placeholder="Rua e número"/></div>
+    <div class="fr">
+      <div class="fg"><label>Cidade</label><input type="text" id="ec-cidade" placeholder="São Paulo"/></div>
+      <div class="fg"><label>Estado (UF)</label><input type="text" id="ec-estado" placeholder="SP" maxlength="2"/></div>
+    </div>
+    <div class="fr">
+      <div class="fg"><label>CEP</label><input type="text" id="ec-cep" placeholder="00000-000"/></div>
+      <div class="fg"><label>Nacionalidade</label><input type="text" id="ec-nac" placeholder="Brasileiro(a)"/></div>
+    </div>
+    <button class="btn-p" id="btn-salvar-edit-cli">Salvar Alterações</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
