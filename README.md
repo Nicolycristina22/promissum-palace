@@ -1,4 +1,4 @@
-# 🏨 Promissum Palace — Hotel Management System
+# 🏨 Promissum Palace 
 
 > Sistema de gerenciamento hoteleiro desenvolvido como projeto final da disciplina **Padrões de Projeto (PP) — 5B Engenharia de Software**.  
 > Aplica os padrões **Builder, Factory, Command e Decorator**, os princípios **SOLID/DIP/Liskov**, arquitetura em camadas e REST API com Flask + MySQL.
